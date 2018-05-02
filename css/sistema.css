@@ -1,0 +1,14 @@
+.carta{
+	padding: 20px;
+	margin: 10px;
+	border-radius: 6px;
+	text-align: center;
+	background: #289a32;
+	cursor: pointer;
+}
+
+.cartaVirada{
+	background: white!important;
+	border: solid 1px gray!important;
+	padding: 19px;
+}
