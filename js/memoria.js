@@ -4,7 +4,7 @@ var escolha = [];
 var conjuntos=[];
 var impares = [];
 var embaralhados=[];
-var qtdCartas = 8;
+var qtdCartas = 10;
 var substantivos = [
 	['Índio', 'Tribo'],
 	['Cobra', 'Covio'],
@@ -25,7 +25,14 @@ var substantivos = [
 	['Porco', 'Vara'],
 	['Flor', 'Ramalhete'],
 	['Roupa', 'Enxoval'],
-	['Pessoa', 'Multidão']
+	['Pessoa', 'Multidão'],
+	['Bispo', 'Concílio'],
+	['Ator', 'Elenco'],
+	['Médico', 'Junta'],
+	['Vegetação', 'Flora'],
+	['Lenha', 'Feixe'],
+	['Inseto', 'Nuvem'],
+	['Estudante', 'Turma']
 ];
 var jogadores = [{ nome: '', pontos : 0 },{ nome: '', pontos : 0 }] ;
 var vez = '';
@@ -35,6 +42,7 @@ var vez = '';
 $( document ).ready( function(){
 
 	defineJogadores();
+	defineQtdCartas();
 	carregaCartas();
 	montaTabuleiro();
 	defineJogadorDaVez();
@@ -70,6 +78,17 @@ $( document ).ready( function(){
 
 
 });
+
+
+function defineQtdCartas(){
+
+	var qtd = prompt("Digite a número de cartas:");
+
+	if( ( parseInt( qtd ) > 3 ) ( parseInt( qtd ) <= 20 ) ){
+
+		qtdCartas = qtd;
+	}
+}
 
 
 function defineJogadores(){
