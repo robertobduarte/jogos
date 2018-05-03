@@ -84,7 +84,7 @@ function defineQtdCartas(){
 
 	var qtd = prompt("Digite a número de cartas:");
 
-	if( ( parseInt( qtd ) > 3 ) ( parseInt( qtd ) <= 20 ) ){
+	if( ( parseInt( qtd ) > 3 ) && ( parseInt( qtd ) <= 20 ) ){
 
 		qtdCartas = qtd;
 	}
