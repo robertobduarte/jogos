@@ -34,8 +34,8 @@ var substantivos = [
 	['Inseto', 'Nuvem'],
 	['Estudante', 'Turma']
 ];
-var jogadores = [{ nome: '', pontos : 0 },{ nome: '', pontos : 0 }] ;
-var vez = '';
+var jogadores = [{ nome: '', pontos : 0, classe :  'correta1', background :  'blue' },{ nome: '', pontos : 0 , classe :  'correta2', background :  'red' }] ;
+var vez = 1;
 
 
 
@@ -102,6 +102,8 @@ function defineJogadores(){
 
 function defineJogadorDaVez(){
 
+	$('#jogo').removeClass(jogadores[vez].background);
+
 	 if( vez == 0 ){
 
 	 	vez = 1;
@@ -111,7 +113,8 @@ function defineJogadorDaVez(){
 	 	vez = 0;
 	 }
 
-	 $('#jogada').find('h2').text( jogadores[vez].nome );
+	 $('#jogada').find('h2').text( jogadores[vez].nome );	 
+	 $('#jogo').addClass(jogadores[vez].background);
 }
 
 
@@ -168,6 +171,7 @@ function removeClasseEscolhida(){
 
 		$(this).removeClass('cartaEscolhida');
 		$(this).addClass('correta');
+		$(this).addClass(jogadores[vez].classe);
 			
 	});
 

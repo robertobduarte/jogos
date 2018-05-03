@@ -14,7 +14,22 @@
 }
 
 .correta{
-	background: #06dcfc !important;
-	color: blue;
+	color: white;
 	border-color: white !important;
+}
+
+.correta1{
+	background: blue !important;
+}
+.correta2{
+	background: red !important;
+}
+
+
+.blue{
+	background: #b5b5fc !important;
+}
+
+.red{
+	background: #f8b5b5 !important;
 }
