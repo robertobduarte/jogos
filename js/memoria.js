@@ -1,10 +1,10 @@
 
-var icone = '<img src="img/duvida.jpg" alt="" class="img-circle" style="max-width:100px;">';
+var icone = '<img src="img/duvida.jpg" alt="" class="img-circle" style="max-width:50px;">';
 var escolha = [];
 var conjuntos=[];
 var impares = [];
 var embaralhados=[];
-var qtdCartas = 19;
+var qtdCartas = 12;
 var substantivos = [
 	['Índio', 'Tribo'],
 	['Cobra', 'Covio'],
@@ -223,7 +223,6 @@ function distribuiCartas(){
 	        impares.splice(x, 1);
 	    }
 
-	    /*console.log(impares);*/
 	}
 
 	/*console.log(impares);*/
