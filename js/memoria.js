@@ -111,10 +111,15 @@ function defineJogadorDaVez(){
 	 	vez = 0;
 	 }
 
-	 $('#jogada').find('h2').text( jogadores[vez].nome + ': ' + jogadores[vez].pontos );	 
-	 $('#jogo').addClass(jogadores[vez].background);
+	 atualizaJogador();
+	 
 }
 
+function atualizaJogador(){
+
+	$('#jogada').find('h2').text( jogadores[vez].nome + ': ' + jogadores[vez].pontos );	 
+	$('#jogo').addClass(jogadores[vez].background);
+}
 
 function addPontos(){
 
@@ -127,12 +132,10 @@ function resultado( id ){
 	bloqueiaCartas();
 
 	if( escolha[0] == escolha[1] )	{
-
-		//alert('parabens');
 		addPontos();
 		removeClasseEscolhida();
 		desbloqueiaCartas();
-		defineJogadorDaVez();
+		atualizaJogador();
 
 	}else{
 
