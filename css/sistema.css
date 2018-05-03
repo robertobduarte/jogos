@@ -12,3 +12,9 @@
 	border: solid 1px gray!important;
 	padding: 19px;
 }
+
+.correta{
+	background: #06dcfc !important;
+	color: blue;
+	border-color: white !important;
+}

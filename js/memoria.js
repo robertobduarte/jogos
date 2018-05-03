@@ -4,7 +4,7 @@ var escolha = [];
 var conjuntos=[];
 var impares = [];
 var embaralhados=[];
-var qtdCartas = 10;
+var qtdCartas = 19;
 var substantivos = [
 	['Índio', 'Tribo'],
 	['Cobra', 'Covio'],
@@ -20,23 +20,30 @@ var substantivos = [
 	['Navio', 'Esquadra'],
 	['Chave', 'Molho'],
 	['Banana', 'Penca'],
-	['Pinto', 'Ninhada']
+	['Pinto', 'Ninhada'],
+	['Árvores Frut.', 'Pomar'],
+	['Porco', 'Vara'],
+	['Flor', 'Ramalhete'],
+	['Roupa', 'Enxoval'],
+	['Pessoa', 'Multidão']
 ];
+var jogadores = [{ nome: '', pontos : 0 },{ nome: '', pontos : 0 }] ;
+var vez = '';
+
+
 
 $( document ).ready( function(){
 
-	
+	defineJogadores();
 	carregaCartas();
 	montaTabuleiro();
+	defineJogadorDaVez();
 
 
 	$( document ).on( "click", "div[id*='opcao_']", function(){
 
 
 		if( !$(this).hasClass('cartaVirada') ){	
-
-			/*var id = $(this).attr('id');
-			var opcao = id.substr(id.indexOf('_')+1);*/
 
 			var nome = $(this).attr('data-nome');
 			var id = $(this).attr('data-id');
@@ -47,6 +54,7 @@ $( document ).ready( function(){
 
 			$(this).append('<div style="height:'+altura+'px"><h3>'+ nome + '</h3></div>')
 			$(this).addClass('cartaVirada');
+			$(this).addClass('cartaEscolhida');
 		}
 
 		console.log(escolha);
@@ -64,22 +72,106 @@ $( document ).ready( function(){
 });
 
 
+function defineJogadores(){
+
+	 j1 = prompt("Nome do jogador 1");
+	 jogadores[0].nome = j1 ;
+	 j2 = prompt("Nome do jogador 2");
+	 jogadores[1].nome = j2 ;
+
+}
+
+function defineJogadorDaVez(){
+
+	 if( vez == 0 ){
+
+	 	vez = 1;
+
+	 }else{
+
+	 	vez = 0;
+	 }
+
+	 $('#jogada').find('h2').text( jogadores[vez].nome );
+}
+
+
+function addPontos(){
+
+	jogadores[vez].pontos += 1;
+	alert(jogadores[vez].nome + ': ' + jogadores[vez].pontos);
+}
+
 function resultado( id ){
 
+	bloqueiaCartas();
+
 	if( escolha[0] == escolha[1] )	{
+
 		alert('parabens');
+		addPontos();
+		removeClasseEscolhida();
+		desbloqueiaCartas();
+		defineJogadorDaVez();
+
 	}else{
 
-		var cart = $('div[data-id="'+id+'"');
-		$.each( cart, function(){
-
-			$(this).find('img').show();
-			$(this).find('div').remove();
-			$(this).find('div').removeClass('cartaVirada');
-			
-		});
+		setTimeout(function() { 
+			desviraCartas();
+		}, 1000);
+		
 	}
+
 	escolha = [];
+
+}
+
+function desviraCartas(){
+
+	var cart = $('.cartaEscolhida');
+	$.each( cart, function(){
+
+		$(this).find('img').show();
+		$(this).find('div').remove();
+		$(this).removeClass('cartaVirada');
+		$(this).removeClass('cartaEscolhida');
+			
+	});
+
+	desbloqueiaCartas();
+	defineJogadorDaVez();
+}
+
+function removeClasseEscolhida(){
+
+	var cart = $('.cartaEscolhida');
+	$.each( cart, function(){
+
+		$(this).removeClass('cartaEscolhida');
+		$(this).addClass('correta');
+			
+	});
+
+}
+		
+
+function bloqueiaCartas(){
+	
+	var cartas = $("div[id*='opcao_']").css('pointer-events', 'none');
+}
+
+function desbloqueiaCartas(){
+
+	var cartas = $("div[id*='opcao_']");
+
+	$.each( cartas, function(){
+
+		if( !$(this).hasClass('correta') ){
+
+			$(this).css('pointer-events', 'visible');
+		}
+		
+	});
 }
 
 function carregaCartas(){
