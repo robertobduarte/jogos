@@ -18,7 +18,7 @@ include_once __DIR__ . "/head.php";
 			<div class="col-md-12" id="jogo" style="">
 			
 				<div class="col-md-12" id="jogada"><h2></h2></div>
-				<div class="col-md-10 col-md-offset-1" id="tabuleiro">
+				<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12" id="tabuleiro">
 				</div>
 
 			</div>

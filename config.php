@@ -16,7 +16,7 @@ ini_set( 'log_errors', true );
 require_once CAMINHO_ABSOLUTO . "model/ErrorControl.php";
 set_error_handler(array('ErrorControl','errorAction'));
 */
-require_once CAMINHO_ABSOLUTO . "autoload.php";
+//require_once CAMINHO_ABSOLUTO . "autoload.php";
 
 
 function debug( $variavel ){

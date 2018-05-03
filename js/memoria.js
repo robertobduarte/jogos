@@ -237,7 +237,7 @@ function montaTabuleiro(){
 	var tabuleiro = ''
 	for( var i=0; i<embaralhados.length; i++ ){
 
-		tabuleiro += '<div class="col-md-2 col-sm-3 col-xs-4 carta" id="opcao_'+ i +'" data-nome="'+embaralhados[i].substantivo+'" data-id="'+embaralhados[i].id+'">'+icone+'</div>';
+		tabuleiro += '<div class="col-md-2 col-sm-2 col-xs-3 carta" id="opcao_'+ i +'" data-nome="'+embaralhados[i].substantivo+'" data-id="'+embaralhados[i].id+'">'+icone+'</div>';
 	}
 
 	console.log(tabuleiro);
