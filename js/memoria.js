@@ -4,7 +4,7 @@ var escolha = [];
 var conjuntos=[];
 var impares = [];
 var embaralhados=[];
-var qtdCartas = 12;
+var qtdCartas = 8;
 var substantivos = [
 	['Índio', 'Tribo'],
 	['Cobra', 'Covio'],
@@ -203,7 +203,7 @@ function embaralhaCartas(){
 		impares.push( { substantivo: conjuntos[i][1], id: i } );
 
 	}
-
+	//alert(impares.length);
 	distribuiCartas();
 
 }
