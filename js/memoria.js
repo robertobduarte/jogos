@@ -2,7 +2,7 @@
 var icone = '<img src="img/duvida.jpg" alt="" class="img-circle" style="max-width:50px;">';
 var escolha = [];
 var conjuntos=[];
-var impares = [];
+var impares = [{}];
 var embaralhados=[];
 var qtdCartas = 10;
 var substantivos = [
@@ -57,10 +57,10 @@ $( document ).ready( function(){
 			var id = $(this).attr('data-id');
 			escolha.push( id );
 
-			var altura = $(this).find('img').height()-20;
+			var altura = $(this).find('img').height();
 			$(this).find('img').hide();
 
-			$(this).append('<div style="height:'+altura+'px"><h3>'+ nome + '</h3></div>')
+			$(this).append('<div style="height:'+altura+'px"><label>'+ nome + '</label></div>')
 			$(this).addClass('cartaVirada');
 			$(this).addClass('cartaEscolhida');
 		}
@@ -69,9 +69,7 @@ $( document ).ready( function(){
 
 		if( escolha.length == 2 ){
 			resultado( id );			
-		}
-
-		
+		}	
 
 
 	});
@@ -233,6 +231,8 @@ function embaralhaCartas(){
 
 function distribuiCartas(){
 
+	console.log(impares);
+
 	while( impares.length > 1 ){
 
 		var x = Math.floor((Math.random() * qtdCartas*2) + 1);
@@ -248,7 +248,7 @@ function distribuiCartas(){
 
 	}
 
-	/*console.log(impares);*/
+	
 	console.log(embaralhados);
 
 }
