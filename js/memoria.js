@@ -34,7 +34,23 @@ var substantivos = [
 	['Inseto', 'Nuvem'],
 	['Estudante', 'Turma']
 ];
-var jogadores = [{ nome: '', pontos : 0, classe :  'correta1', background :  'blue' },{ nome: '', pontos : 0 , classe :  'correta2', background :  'red' }] ;
+var jogadores = [
+					{ 	
+						nome: '', 
+						pontos : 0, 
+						classe : 'correta1', 
+						background : 'blue',
+						jogadas: 0
+					},
+					{ 
+						nome: '', 
+						pontos : 0 , 
+						classe : 'correta2', 
+						background : 'red',
+						jogadas: 0
+					}
+				];
+
 var vez = 1;
 
 
@@ -74,6 +90,26 @@ $( document ).ready( function(){
 
 	});
 
+
+	$('#novo').click(function(){
+
+		escolha = [];
+
+		jogadores[0].pontos = 0;
+		jogadores[0].jogadas = 0;
+		jogadores[1].pontos = 0;
+		jogadores[1].jogadas = 0;
+
+		$("#modal_resultado").modal('hide');
+
+		vez = 1;
+
+		defineQtdCartas();
+		carregaCartas();
+		montaTabuleiro();
+		defineJogadorDaVez();
+
+	});
 
 });
 
@@ -130,12 +166,14 @@ function addPontos(){
 function resultado( id ){
 
 	bloqueiaCartas();
+	jogadores[vez].jogadas += 1;
 
 	if( escolha[0] == escolha[1] )	{
 		addPontos();
 		removeClasseEscolhida();
 		desbloqueiaCartas();
 		atualizaJogador();
+
 
 	}else{
 
@@ -187,15 +225,52 @@ function bloqueiaCartas(){
 function desbloqueiaCartas(){
 
 	var cartas = $("div[id*='opcao_']");
+	var faltantes = 0;
 
 	$.each( cartas, function(){
 
 		if( !$(this).hasClass('correta') ){
 
+			faltantes++;
+
 			$(this).css('pointer-events', 'visible');
 		}
 		
 	});
+
+	if( faltantes == 0 ){
+		showResultado();
+	}
+}
+
+function showResultado(){
+
+	var vencedor = getVencedor
+
+	$('#vencedor').text('Parabéns ' + jogadores[getVencedor()].nome + '!!!');
+	$('#pontuacao').text('Pontos: ' + jogadores[getVencedor()].pontos);
+	$('#jogadas').text('Jogadas: ' + jogadores[getVencedor()].jogadas);
+	//$('#perdedor').text('Não fique triste, tente da próxima vez.');
+
+	$("#modal_resultado").modal({
+						backdrop: 'static',
+						keyboard: false
+					});
+
+}
+
+function getVencedor(){
+
+	if( jogadores[0].pontos > jogadores[1].pontos){
+
+		var vencedor = 0;
+
+	}else{
+
+		var vencedor = 1;
+	}
+
+	return vencedor;
 }
 
 function carregaCartas(){
@@ -258,6 +333,8 @@ function distribuiCartas(){
 
 
 function montaTabuleiro(){
+
+	$('#tabuleiro').find('div').remove();
 
 	var tabuleiro = ''
 	for( var i=0; i<embaralhados.length; i++ ){
